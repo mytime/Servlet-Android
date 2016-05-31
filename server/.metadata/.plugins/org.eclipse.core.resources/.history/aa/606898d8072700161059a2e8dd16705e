@@ -1,0 +1,51 @@
+package com.yanwanfu.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.yanwanfu.bean.User;
+import com.yanwanfu.service.UserService;
+
+public class LoginServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+	private User user;
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// get parameter
+		String username =req.getParameter("username");
+		String password =req.getParameter("password");
+		
+		// user bean
+		user = new User(username, password);
+		
+		//check user
+		if(new UserService().valiUser(user)){
+			// write session
+			JsonObject object = new JsonObject();
+			object.addProperty("id",new UserService().userId(user));
+			object.addProperty("username", user.getUsername());
+			System.out.println("json:"+ object.toString());			
+		}
+	}
+
+	@Override
+	public void destroy() {
+		super.destroy();
+	}
+	
+
+}

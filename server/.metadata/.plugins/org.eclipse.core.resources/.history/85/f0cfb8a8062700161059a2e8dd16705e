@@ -1,0 +1,13 @@
+package com.yanwanfu.test;
+
+import com.yanwanfu.bean.User;
+
+public class TestGetUserId {
+
+	public static void main(String[] args) {
+		String username = "yanwanfu";
+		String password = "123456";
+		User user = new User("yanwanfu", 123456)
+	}
+
+}

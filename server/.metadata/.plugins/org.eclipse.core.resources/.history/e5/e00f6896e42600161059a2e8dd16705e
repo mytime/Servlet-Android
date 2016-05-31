@@ -1,0 +1,12 @@
+package com.yanwanfu.conn;
+
+import java.sql.Connection;
+/**数据库连接类*/
+public class conn {
+	public Connection getConn(){
+		
+		
+		return null;		
+	}
+
+}

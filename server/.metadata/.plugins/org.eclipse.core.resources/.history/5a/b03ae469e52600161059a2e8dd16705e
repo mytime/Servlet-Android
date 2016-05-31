@@ -1,0 +1,24 @@
+package com.yanwanfu.conn;
+
+import java.sql.Connection;
+/**database connection*/
+public class conn {
+	public Connection getConn(){
+		
+		try {
+			//load JDBC Driver
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			
+			
+			
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;		
+	}
+
+}

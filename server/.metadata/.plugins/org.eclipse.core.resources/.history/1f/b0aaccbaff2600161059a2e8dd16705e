@@ -1,0 +1,13 @@
+package com.yanwanfu.service;
+
+import java.sql.Connection;
+
+import com.yanwanfu.conn.Conn;
+
+public class UserService {
+	private Connection conn;
+	
+	public UserService(){
+		conn = new Conn().getConn();
+	}
+}

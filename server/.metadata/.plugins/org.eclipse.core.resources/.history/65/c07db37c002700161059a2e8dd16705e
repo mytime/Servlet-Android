@@ -1,0 +1,41 @@
+package com.yanwanfu.service;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.yanwanfu.bean.User;
+import com.yanwanfu.conn.Conn;
+
+public class UserService {
+	private Connection conn;
+	private PreparedStatement pstmt;
+	
+	public UserService(){
+		conn = new Conn().getConn();
+	}
+	
+	/**验证用户*/
+	public boolean valiUser(User user){
+		String sql = "select * from androiduser where name = ? and password = ?";
+		try {
+			//预处理
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user.getUsername());
+			pstmt.setString(2, user.getPassword());
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				return true;
+			}else{
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
+}
